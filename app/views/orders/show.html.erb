@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @order.customer %>
+</p>
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Description</th>
+      <th>price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @inventory.each do |inventory| %>
+      <tr>
+        <td><%= inventory.category %></td>
+        <td><%= inventory.description %></td>
+        <td><%= number_to_currency(inventory.price) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<p>
+  <strong>Total:</strong>
+  <%= @order.total %>
+</p>
+
+<%= link_to 'Print to PDF', order_path(@order, format:"pdf") %>
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', orders_path %>
